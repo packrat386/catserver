@@ -25,5 +25,8 @@ func catHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	fmt.Printf("%s %s %s\n", r.Method, r.RequestURI, r.Proto)
+	r.Header.WriteSubset(os.Stdout, nil)
+	fmt.Printf("\n")
 	fmt.Println(string(body))
 }
