@@ -4,11 +4,17 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func main() {
+	addr := os.Getenv("ADDR")
+	if addr == "" {
+		addr = ":8080"
+	}
+
 	http.HandleFunc("/", catHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(addr, nil)
 }
 
 func catHandler(w http.ResponseWriter, r *http.Request) {
