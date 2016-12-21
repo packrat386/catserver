@@ -14,7 +14,9 @@ func main() {
 	}
 
 	http.HandleFunc("/", catHandler)
-	http.ListenAndServe(addr, nil)
+	if err := http.ListenAndServe(addr, nil); err != nil {
+		fmt.Fprintf(os.Stderr, "Fatal: %s\n", err)
+	}
 }
 
 func catHandler(w http.ResponseWriter, r *http.Request) {
