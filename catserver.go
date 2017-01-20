@@ -20,7 +20,8 @@ func main() {
 }
 
 func catHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Got Req")
+	fmt.Printf("Request from %s\n", r.RemoteAddr)
+
 	w.WriteHeader(200)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
